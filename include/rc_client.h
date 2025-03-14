@@ -196,6 +196,11 @@ typedef struct rc_client_user_t {
 RC_EXPORT const rc_client_user_t* RC_CCONV rc_client_get_user_info(const rc_client_t* client);
 
 /**
+ * Sets information about the logged in user.
+ */
+RC_EXPORT void RC_CCONV rc_client_set_user_info(rc_client_t* client, const rc_client_user_t* user);
+
+/**
  * Gets the URL for the user's profile picture.
  * Returns RC_OK on success.
  */

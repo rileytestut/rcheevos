@@ -827,6 +827,15 @@ const rc_client_user_t* rc_client_get_user_info(const rc_client_t* client)
   return (client->state.user == RC_CLIENT_USER_STATE_LOGGED_IN) ? &client->user : NULL;
 }
 
+void rc_client_set_user_info(rc_client_t* client, const rc_client_user_t* user)
+{
+  client->user = *user;
+  
+  rc_mutex_lock(&client->state.mutex);
+  client->state.user = RC_CLIENT_USER_STATE_LOGGED_IN;
+  rc_mutex_unlock(&client->state.mutex);
+}
+
 int rc_client_user_get_image_url(const rc_client_user_t* user, char buffer[], size_t buffer_size)
 {
   if (!user)
